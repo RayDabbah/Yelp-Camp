@@ -26,7 +26,7 @@ div {
     clear: inherit;
 	background-color: transparent;
 	width: 500px;
-	height: 350px;
+	height: 500px;
 	text-align: center;
 	margin: 10px;
 	border: grey 1px solid;
@@ -45,7 +45,7 @@ img {
 	border: 2px solid grey;
 	height: 70%;
 	width: 80%;
-	 margin-bottom: 10%;
+	 margin-bottom: 2%;
     /*margin-top: 10%;*/
 }
 
@@ -65,4 +65,16 @@ section {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+button{
+	padding: 7px;
+	background-color: #84a8ea;
+	border: #5A85CE solid 1px;
+	border-radius: 8%;
+	box-shadow: #ddd 2px 2px; 
+}
+a {
+	background-color: #84a8ea;
+	color: black;
+	text-decoration: none;
 }
