@@ -1,60 +1,72 @@
 var express = require("express"),
-    mongoose = require('mongoose'),
-    app = express();
+	mongoose = require('mongoose'),
+	app = express();
 var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 mongoose.connect("mongodb://localhost/yelpCamp");
 var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String
-    });
+	name: String,
+	image: String,
+    description: String
+});
 var campground = mongoose.model("campground", campgroundSchema);
 
 
 app.get("/", (req, res) => {
-    res.render("landing");
+	res.render("landing");
 });
 app.get("/campgrounds", (req, res) => {
-    campground.find({}, function(err, allCampgrounds){
-        if(err) {
-            console.log(err);
-        } else {
-    res.render("campgrounds", {campgrounds: allCampgrounds});        
-        }
-        });
-    
+	campground.find({}, function(err, allCampgrounds) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("campgrounds", {
+				campgrounds: allCampgrounds
+			});
+		}
+	});
+
 });
 app.post("/campgrounds", (req, res) => {
-    var name = req.body.name;
-    var image = req.body.image;
-    var desc = req.body.description;
-    var newCampGround = {name: name, image: image, description: desc};
-    campground.create(newCampGround, function(err, latestCampground) {
-        if(err) {
-            res.redirect("/campgrounds/new");
-            console.log('There was en error adding your favorite campground.');
-        } else{
-    res.redirect("/campgrounds");
-        }
-        });
-    //campgrounds.push(newCampGround);
-    
+	var name = req.body.name;
+	var image = req.body.image;
+	var desc = req.body.description;
+	var newCampGround = {
+		name: name,
+		image: image,
+		description: desc
+	};
+	console.log(req.body.name);
+	console.log(req.body.description);
+	campground.create(newCampGround, function(err, latestCampground) {
+		if (err) {
+			res.redirect("/campgrounds/new");
+			console.log('There was en error adding your favorite campground.');
+		} else {
+			res.redirect("/campgrounds");
+		}
+	});
 });
 app.get("/campgrounds/new", (req, res) => res.render("newCampground"));
-app.get ("campgrounds/:id", function(req, res) {
-    campground.findById(req.params.id, function(err, clickedOnCg) {
-        if(err) {
-            console.log(err);
-        }else{
-            res.render("/show", {campground: clickedOnCg});
-        }
-        });
+app.get("/campgrounds/:id", function(req, res) {
+	campground.findById(req.params.id, function(err, clickedOnCg) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render("show", {
+				campground: clickedOnCg
+			});
+
+		}
+	});
 });
 
 
-app.listen(3000, ()=> console.log('The server has started.'));
+app.listen(3000, () => console.log('The server has started.'));
 //var campgrounds = [
 //    {name: 'Roaring Rivers' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCbUWZXpp1e0TpHykfTuBNPJW6xKbNhzF4DO14Kk5sUWkKtQQPAA"},
 //    {name: 'Scenic Byway' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnLuRq6C4KcTG1qok7DRvo2dI4Gok9Cg4mkdrSjchHeNByIYCxw"},
