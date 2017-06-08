@@ -66,7 +66,7 @@ app.get("/campgrounds/:id", function(req, res) {
 });
 
 
-app.listen(3000, () => console.log('The server has started.'));
+app.listen(3000,"localhost", () => console.log('The server has started.'));
 //var campgrounds = [
 //    {name: 'Roaring Rivers' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCbUWZXpp1e0TpHykfTuBNPJW6xKbNhzF4DO14Kk5sUWkKtQQPAA"},
 //    {name: 'Scenic Byway' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnLuRq6C4KcTG1qok7DRvo2dI4Gok9Cg4mkdrSjchHeNByIYCxw"},
