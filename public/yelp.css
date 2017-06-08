@@ -1,4 +1,10 @@
+#desc {
+	font-family: 'Gloria Hallelujah', cursive;
+}
+
 h1 {
+	font-family: 'Varela Round', sans-serif;
+	font-weight: bolder;
 	color: blue;
 	text-shadow: 4px 2px #aba;
 	font-size: 5em;
@@ -15,6 +21,7 @@ h3 {
 }
 
 * {
+	font-family: 'Comfortaa', cursive;
 	background-color: #E0FFE0;
 }
 
@@ -79,16 +86,12 @@ section {
 
 button {
 	color: white;
-    padding: 7px;
-    background-color: #05b025;
-    border: #000 solid 2px;
-    border-radius: 15%;
-    cursor: pointer;
-    height: 40px;
-}
-a :hover {
-	background-color: #000;
-	border: #05b025 solid 2px;
+	padding: 7px;
+	background-color: #05b025;
+	border: #000 solid 2px;
+	border-radius: 15%;
+	cursor: pointer;
+	height: 40px;
 }
 
 a {
@@ -100,11 +103,24 @@ a {
 	cursor: pointer;
 }
 
+a :hover {
+	background-color: #000;
+	border: #05b025 solid 2px;
+	transform: scale(1.05);
+}
+p a:hover{
+	text-transform: capitalize;
+	font-size: .99em;
+	text-decoration: underline;
+	color: #0e640e;
+	tras
+}
 input {
 	font-size: .9em;
 	padding: 10px;
-	width: 35%;
+	width: 42%;
 	background-color: #D2F7C8;
 	border: #222 solid 1px;
 	margin-bottom: 15px;
+	text-align: center;
 }
