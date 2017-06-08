@@ -40,7 +40,6 @@ app.post("/campgrounds", (req, res) => {
 		image: image,
 		description: desc
 	};
-	console.log(req);
 	campground.create(newCampGround, function(err, latestCampground) {
 		if (err) {
 			res.redirect("/campgrounds/new");
