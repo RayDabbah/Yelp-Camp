@@ -11,7 +11,7 @@ mongoose.connect("mongodb://localhost/yelpCamp");
 var campgroundSchema = new mongoose.Schema({
 	name: String,
 	image: String,
-    description: String
+	description: String
 });
 var campground = mongoose.model("campground", campgroundSchema);
 
@@ -40,8 +40,7 @@ app.post("/campgrounds", (req, res) => {
 		image: image,
 		description: desc
 	};
-	console.log(req.body.name);
-	console.log(req.body.description);
+	console.log(req);
 	campground.create(newCampGround, function(err, latestCampground) {
 		if (err) {
 			res.redirect("/campgrounds/new");
@@ -64,7 +63,7 @@ app.get("/campgrounds/:id", function(req, res) {
 		}
 	});
 });
-
+app.get("*", (req, res) => res.redirect("/"));
 
 app.listen(3000, () => console.log('The server has started.'));
 //var campgrounds = [
