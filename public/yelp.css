@@ -19,10 +19,21 @@ h3 {
 	font-size: 3.5em;
 	text-align: center;
 }
+.container{
+	margin: -3px;
+	width: 100%;
+	height: auto;
+	border: solid 0px;
+	background: repeating-radial-gradient(ellipse, rgba(12, 140, 8, 0.3), rgba(27, 163, 22, 0.8), #c8dc2f);
+}
 
 * {
 	font-family: 'Comfortaa', cursive;
-	background-color: #E0FFE0;
+	/*background-color: #E0FFE0;*/
+}
+body{
+	margin: 0px;
+	height: auto;
 }
 
 .grounds {
