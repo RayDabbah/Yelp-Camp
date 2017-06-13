@@ -19,7 +19,8 @@ h3 {
 	font-size: 3.5em;
 	text-align: center;
 }
-.container{
+
+.container {
 	margin: -3px;
 	width: 100%;
 	height: auto;
@@ -31,7 +32,8 @@ h3 {
 	font-family: 'Comfortaa', cursive;
 	/*background-color: #E0FFE0;*/
 }
-body{
+
+body {
 	margin: 0px;
 	height: auto;
 }
@@ -45,9 +47,10 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: hidden;
+	border-radius: 11%;
 }
 
-div {
+div.content {
 	float: right;
 	clear: inherit;
 	background-color: transparent;
@@ -55,7 +58,8 @@ div {
 	height: 500px;
 	text-align: center;
 	margin: 10px;
-	border: grey 1px solid;
+	border: green solid 1px;
+	border-radius: 11%;
 }
 
 h2 {
@@ -119,13 +123,15 @@ a :hover {
 	border: #05b025 solid 2px;
 	transform: scale(1.05);
 }
-p a:hover{
+
+p a:hover {
 	text-transform: capitalize;
 	font-size: .99em;
 	text-decoration: underline;
 	color: #0e640e;
 	transform: scale(1.06);
 }
+
 input {
 	font-size: .9em;
 	padding: 10px;
@@ -135,7 +141,10 @@ input {
 	margin-bottom: 15px;
 	text-align: center;
 }
+
 #show {
 	width: 60%;
-	border: 16px solid hsla(130, 100%, 25%, 0.58);;
+	border: 16px solid rgba(0, 0, 0, 0.95);
+	border-radius: 8%;
+	;
 }
