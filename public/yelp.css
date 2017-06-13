@@ -176,4 +176,5 @@ textarea{
 	width: 60%;
 	border: 16px solid rgba(0, 0, 0, 0.95);
 	border-radius: 8%;
+	box-shadow: #2a2b20 8px 5px 20px 3px;
 }
