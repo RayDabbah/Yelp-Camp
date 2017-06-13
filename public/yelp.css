@@ -73,7 +73,7 @@ h2 {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	margin: 5% auto;
-	width: 89%
+	width: 89%;
 }
 
 img {
@@ -144,6 +144,7 @@ p a:hover {
 
 :focus::placeholder {
   opacity: 0.5;
+  
 }
 
 input[type=submit]{
@@ -159,13 +160,18 @@ input, textarea {
 	background-color: #D2F7C8;
 	margin-bottom: 15px;
 	text-align: center;
-	box-shadow: inset #0D2601 0px 0px 20px 10px;
+	box-shadow: inset rgba(101, 169, 69, 0.6) 0px 0px 20px 10px;
+	transition: width 500ms ease;;
 }
+ input:hover, textarea:hover{
+	width: 85%;
+ }
 
 input:focus, textarea:focus{
 	border: none;
 	outline: none;
-	box-shadow: #0D2601 1px 1px 17px 5px;
+	box-shadow: rgba(28, 81, 1, 0.5) 1px 1px 17px 5px;
+	width: 85%;
 	}
 	
 textarea{
@@ -176,5 +182,5 @@ textarea{
 	width: 60%;
 	border: 16px solid rgba(0, 0, 0, 0.95);
 	border-radius: 8%;
-	box-shadow: #2a2b20 8px 5px 20px 3px;
+	box-shadow: #2a2b20 8px 8px 20px 3px;
 }
