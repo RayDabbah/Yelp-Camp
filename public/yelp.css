@@ -137,21 +137,29 @@ p a:hover {
 	color: #0e640e;
 	transform: scale(1.06);
 }
-::placeholder{
+
+::placeholder {
 	color: #03A55C;
-	transition: opacity 300ms ease;
+	transition: opacity 300ms, font-weight 2s, letter-spacing 800ms;
 }
 
 :focus::placeholder {
-  opacity: 0.5;
-  
+	opacity: 0.5;
+	letter-spacing: 10px;
+	font-weight: bolder;
 }
 
-input[type=submit]{
+:hover::placeholder {
+	letter-spacing: 10px;
+	font-weight: bolder;
+}
+
+input[type=submit] {
 	cursor: pointer;
 }
 
-input, textarea {
+input,
+textarea {
 	border: none;
 	border-radius: 23px;
 	font-size: .9em;
@@ -161,20 +169,29 @@ input, textarea {
 	margin-bottom: 15px;
 	text-align: center;
 	box-shadow: inset rgba(101, 169, 69, 0.6) 0px 0px 20px 10px;
-	transition: width 500ms ease;;
+	transition: width 500ms, letter-spacing 800ms, font-weight 2s;
+	;
 }
- input:hover, textarea:hover{
-	width: 85%;
- }
 
-input:focus, textarea:focus{
+input:hover,
+textarea:hover {
+	width: 85%;
+}
+
+input[type=submit]:hover {
+	letter-spacing: 10px;
+	font-weight: bolder;
+}
+
+input:focus,
+textarea:focus {
 	border: none;
 	outline: none;
 	box-shadow: rgba(28, 81, 1, 0.5) 1px 1px 17px 5px;
 	width: 85%;
-	}
-	
-textarea{
+}
+
+textarea {
 	height: 150px;
 }
 
