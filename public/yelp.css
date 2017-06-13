@@ -145,6 +145,7 @@ p a:hover {
 :focus::placeholder {
   opacity: 0.5;
 }
+
 input[type=submit]{
 	cursor: pointer;
 }
