@@ -1,5 +1,7 @@
 var express = require("express"),
 	mongoose = require('mongoose'),
+	campground= require("./models/campgrounds"),
+	seed = require("./seed"),
 	app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
@@ -7,13 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
-mongoose.connect("mongodb://localhost/yelpCamp");
-var campgroundSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String
-});
-var campground = mongoose.model("campground", campgroundSchema);
+mongoose.connect("mongodb://localhost/yelpCampSeed");
 
 
 app.get("/", (req, res) => {
