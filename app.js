@@ -1,6 +1,6 @@
 var express = require("express"),
 	mongoose = require('mongoose'),
-	campground= require("./models/campgrounds"),
+	campground = require("./models/campgrounds"),
 	seed = require("./seed"),
 	app = express();
 var bodyParser = require("body-parser");
@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
+seed();
 mongoose.connect("mongodb://localhost/yelpCampSeed");
 
 
@@ -47,20 +48,20 @@ app.post("/campgrounds", (req, res) => {
 });
 app.get("/campgrounds/new", (req, res) => res.render("newCampground"));
 app.get("/campgrounds/:id", function(req, res) {
-	campground.findById(req.params.id, function(err, clickedOnCg) {
+	campground.findById(req.params.id).populate("comments").exec(function(err, clickedOnCg) {
 		if (err) {
 			console.log(err);
 		} else {
+			console.log(clickedOnCg);
 			res.render("show", {
 				campground: clickedOnCg
 			});
-
 		}
 	});
 });
 app.get("*", (req, res) => res.redirect("/"));
 
-app.listen(3000,"localhost", () => console.log('The server has started.'));
+app.listen(3000, "localhost", () => console.log('The server has started.'));
 //var campgrounds = [
 //    {name: 'Roaring Rivers' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCbUWZXpp1e0TpHykfTuBNPJW6xKbNhzF4DO14Kk5sUWkKtQQPAA"},
 //    {name: 'Scenic Byway' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnLuRq6C4KcTG1qok7DRvo2dI4Gok9Cg4mkdrSjchHeNByIYCxw"},

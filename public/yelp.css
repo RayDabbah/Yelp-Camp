@@ -201,3 +201,16 @@ textarea {
 	border-radius: 8%;
 	box-shadow: #2a2b20 8px 8px 20px 3px;
 }
+#comment{
+	padding: 20px;
+	margin: 0 auto;
+	border-radius: 32%;
+	width: 60%;
+	
+	/*border: solid 1px;*/
+	font-family: 'Pangolin', cursive;
+	background-color: white;
+}
+strong{
+	font-weight: bolder;
+}

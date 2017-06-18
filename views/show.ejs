@@ -5,7 +5,12 @@
 	<img id="show" src="<%= campground.image %>"><br>
 	<p id="desc">
 		<%= campground.description %>
-	</p <br>
+	</p> <br>
+	<p id="comment">
+	<% campground.comments.forEach(function(comment) { %>
+		<strong><%= comment.author %> - </strong><%= comment.text %>
+	<%	}); %>
+	</p>
 	<p><a href="/campgrounds">Back to our campgrounds</a></p>
 	
 
