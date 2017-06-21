@@ -1,6 +1,7 @@
 var express = require("express"),
 	mongoose = require('mongoose'),
 	campground = require("./models/campgrounds"),
+	Comment = require("./models/comments"),
 	seed = require("./seed"),
 	app = express();
 var bodyParser = require("body-parser");
@@ -40,7 +41,7 @@ app.post("/campgrounds", (req, res) => {
 	campground.create(newCampGround, function(err, latestCampground) {
 		if (err) {
 			res.redirect("/campgrounds/new");
-			console.log('There was en error adding your favorite campground.');
+			console.log('There was en error adding your campground.');
 		} else {
 			res.redirect("/campgrounds");
 		}
@@ -58,6 +59,33 @@ app.get("/campgrounds/:id", function(req, res) {
 			});
 		}
 	});
+});
+app.get("/campgrounds/:id/comments/new", (req, res)=> {
+	campground.findById(req.params.id, (err, campground) => {
+		if (err){
+			console.log(err);
+		}else{
+			console.log(campground);
+	 		res.render("newcomment",
+			{
+				campground: campground
+			});
+		}
+	});
+});
+app.post("/campgrounds/:id/comments",(req, res) => {
+	campground.findById(req.params.id, (err,campground)=> {
+	Comment.create(req.body.comment, (err, comment) =>{
+		if(err){
+			res.redirect("/campgrounds");
+		}else{
+			campground.comments.push(comment);
+			campground.save();
+			res.redirect("/campgrounds/" + campground._id);
+		}
+	 });
+	// res.send("you've reached POST")
+});
 });
 app.get("*", (req, res) => res.redirect("/"));
 

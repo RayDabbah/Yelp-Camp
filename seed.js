@@ -32,6 +32,10 @@ function seedDB() {
 						console.log(err);
 					} else {
 						console.log(`created ${campG.name}`);
+						Comment.remove({},err=> {
+							if(err) {
+								console.log(err);
+							}
 						Comment.create({
 							text: `The only campground I've been to that serves herring!!!`,
 							author: `Moshe Kapoach`
@@ -43,6 +47,7 @@ function seedDB() {
 								campG.save();
 								console.log(`${comm.author}Added comment to ${campG.name}`);
 							}
+						});
 						});
 					}
 				});
