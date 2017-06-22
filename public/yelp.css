@@ -214,3 +214,29 @@ textarea {
 strong{
 	font-weight: bolder;
 }
+nav{
+	height: 50px;
+	font-size: 1.3em;
+	background: linear-gradient(to bottom, #75ca9f, #6fcc76);
+	border: 1px solid grey;
+}
+
+li{
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 1%;
+	height: 100%;
+}
+.container nav li:hover{
+	background: linear-gradient(to bottom, #a7eaac, #a8d0ab);
+}
+.navright{
+	float: right;
+}
+.navleft{
+	float: left;
+}
+.navanchor{
+	color: black;
+
+}
