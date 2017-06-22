@@ -111,16 +111,30 @@ app.get("/register", (req, res) => {
 app.post("/register", (req, res) => {
 	const newUser = new User({ username: req.body.username });
 	User.register(newUser, req.body.password, (err, user) => {
-		if(err){
+		if (err) {
 			console.log(err);
 			return res.redirect("/register");
-		}else{
+		} else {
 			passport.authenticate("local")(req, res, () => {
 				res.redirect("/campgrounds");
 			});
 		}
 	});
 
+});
+
+// Login
+app.get("/login", (req, res) => {
+	res.render("login");
+});
+app.post("/login", passport.authenticate("local", {
+	successRedirect: "/campgrounds",
+	failureRedirect: "/login"
+}));
+
+app.get("/logout", (req, res)=> {
+	req.logout();
+	res.redirect("/campgrounds");
 });
 
 app.get("*", (req, res) => res.redirect("/"));
