@@ -12,11 +12,32 @@
 
 <body>
 	<div class="container">
-	<div class="spacer">
-	</div>
+		<div class="spacer">
+		</div>
 		<nav>
-			<li class="navleft"><a class="navanchor" href="/">Home</a></li>
-			<li class="navright"><a class="navanchor"href="/register">Sign Up&nbsp</a></li>
-			<li class="navright"><a class="navanchor"href="/login">Log In&nbsp</a></li>
-			<li class="navright"><a class="navanchor"href="/logout">Log Out&nbsp</a></li>
+			<a class="navanchor" href="/">
+				<li class="navleft">Home</li>
+			</a>
+			<a class="navanchor" href="/campgrounds">
+				<li>&nbsp&nbsp&nbspAll Campgrounds</li>
+			</a>
+			<a class="navanchor" href="/campgrounds/new">
+				<li>&nbsp&nbsp&nbsp New Campground</li>
+			</a>
+			<% if(!loggedIn){ %>
+				<a class="navanchor" href="/register">
+					<li class="navright">Sign Up&nbsp</li>
+				</a>
+				<a class="navanchor" href="/login">
+					<li class="navright">Log In&nbsp</li>
+				</a>
+				<% } else { %>
+					<a class="navanchor" href="#">
+						<li class="navright">Hello,
+							<%= loggedIn.username.toUpperCase() %>!!
+						</li>
+						<a class="navanchor" href="/logout">
+							<li class="navright">Log Out&nbsp</li>
+						</a>
+						<% } %>
 		</nav>

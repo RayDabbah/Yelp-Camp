@@ -227,6 +227,8 @@ li {
 }
 .container nav li:hover {
   background: linear-gradient(to bottom, #044a26, #134c04);
+  border: none;
+  transform: scale(1);
 }
 .navright {
   float: right;
