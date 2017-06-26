@@ -9,6 +9,8 @@
 	<p>
 		<a href="/campgrounds/<%= campground._id%>/comments/new"><button>Add your thoughts on this campground!</button></a>
 	</p>
+	<h4>This gorgeous campground was submitted by
+		<%= campground.author.username %>.</h4><br><br><br>
 	<div id="comment">
 		<% campground.comments.forEach(function(comment) { %>
 			<p><strong><%= comment.author.username %> - </strong>
