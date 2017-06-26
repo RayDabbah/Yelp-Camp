@@ -11,7 +11,7 @@
 	</p>
 	<div id="comment">
 		<% campground.comments.forEach(function(comment) { %>
-			<p><strong><%= comment.author %> - </strong>
+			<p><strong><%= comment.author.username %> - </strong>
 				<%= comment.text %>
 			</p>
 			<%	}); %>

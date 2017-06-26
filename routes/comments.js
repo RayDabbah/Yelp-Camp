@@ -21,8 +21,13 @@ router.post("/", isLoggedIn, (req, res) => {
 			if (err) {
 				res.redirect("/campgrounds");
 			} else {
+                comment.author.id = req.user._id;
+                comment.author.username = req.user.username;
 				campground.comments.push(comment);
 				campground.save();
+                console.log(req.user)
+                console.log(comment)
+                console.log(campground)
 				res.redirect("/campgrounds/" + campground._id);
 			}
 		});

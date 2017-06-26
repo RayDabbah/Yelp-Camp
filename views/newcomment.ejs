@@ -2,7 +2,6 @@
 	<h3>This is <strong>the</strong> place to add your comments for <%= campground.name %><br> and share it with the world!</h3>
 	<form action="/campgrounds/<%= campground._id%>/comments" method="POST">
 		<input type="text" name="comment[text]" placeholder="Comment"><br>
-		<input type="text" name="comment[author]" placeholder="Your name"><br>
 		
 		<input type="submit" placeholder="Add your Comment!">
 	</form>
