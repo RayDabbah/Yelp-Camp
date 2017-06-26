@@ -9,13 +9,15 @@
 	<p>
 		<a href="/campgrounds/<%= campground._id%>/comments/new"><button>Add your thoughts on this campground!</button></a>
 	</p>
-	<p id="comment">
-	<% campground.comments.forEach(function(comment) { %>
-		<strong><%= comment.author %> - </strong><%= comment.text %>
-	<%	}); %>
-	</p>
+	<div id="comment">
+		<% campground.comments.forEach(function(comment) { %>
+			<p><strong><%= comment.author %> - </strong>
+				<%= comment.text %>
+			</p>
+			<%	}); %>
+	</div>
 	<p><a href="/campgrounds">Back to our campgrounds</a></p>
-	
+
 
 
 	<% include partials/footer %>
