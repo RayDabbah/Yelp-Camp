@@ -38,7 +38,7 @@ function seedDB() {
 						}
 						Comment.create({
 							text: `The only campground I've been to that serves herring!!!`,
-							author: `Moshe Kapoach`
+							author: { username: `Moshe Kapoach` }
 						}, function (err, comm) {
 							if (err) {
 								console.log(err);
