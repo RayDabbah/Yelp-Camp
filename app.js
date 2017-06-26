@@ -38,6 +38,6 @@ app.use((req, res, next) => {
 });
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
-app.use('./', indexRoutes);
+app.use('/', indexRoutes);
 
 app.listen(3000, "localhost", () => console.log('The server has started.'));
