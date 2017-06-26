@@ -29,6 +29,11 @@ passport.deserializeUser(User.deserializeUser());
 seed();
 mongoose.connect("mongodb://localhost/yelpCampSeed");
 
+app.use((req, res, next) => {
+	res.locals.loggedIn = req.user;
+	next();
+});
+
 
 app.get("/", (req, res) => {
 	res.render("landing");
@@ -36,7 +41,7 @@ app.get("/", (req, res) => {
 app.get("/campgrounds", (req, res) => {
 	campground.find({}, function (err, allCampgrounds) {
 		if (err) {
-			console.log(err);
+			 console.log(err);
 		} else {
 			res.render("campgrounds", {
 				campgrounds: allCampgrounds
@@ -57,7 +62,7 @@ app.post("/campgrounds", isLoggedIn, (req, res) => {
 	campground.create(newCampGround, function (err, latestCampground) {
 		if (err) {
 			res.redirect("/campgrounds/new");
-			console.log('There was en error adding your campground.');
+			 console.log('There was en error adding your campground.');
 		} else {
 			res.redirect("/campgrounds");
 		}
@@ -67,9 +72,8 @@ app.get("/campgrounds/new", isLoggedIn, (req, res) => res.render("newCampground"
 app.get("/campgrounds/:id", function (req, res) {
 	campground.findById(req.params.id).populate("comments").exec(function (err, clickedOnCg) {
 		if (err) {
-			console.log(err);
+			 console.log(err);
 		} else {
-			console.log(clickedOnCg);
 			res.render("show", {
 				campground: clickedOnCg
 			});
@@ -79,9 +83,8 @@ app.get("/campgrounds/:id", function (req, res) {
 app.get("/campgrounds/:id/comments/new", isLoggedIn, (req, res) => {
 	campground.findById(req.params.id, (err, campground) => {
 		if (err) {
-			console.log(err);
+			 console.log(err);
 		} else {
-			console.log(campground);
 			res.render("newcomment",
 				{
 					campground: campground
@@ -112,7 +115,7 @@ app.post("/register", (req, res) => {
 	const newUser = new User({ username: req.body.username });
 	User.register(newUser, req.body.password, (err, user) => {
 		if (err) {
-			console.log(err);
+			 console.log(err);
 			return res.redirect("/register");
 		} else {
 			passport.authenticate("local")(req, res, () => {
@@ -132,13 +135,13 @@ app.post("/login", passport.authenticate("local", {
 	failureRedirect: "/login"
 }));
 
-app.get("/logout", (req, res)=> {
+app.get("/logout", (req, res) => {
 	req.logout();
 	res.redirect("/campgrounds");
-}); 
+});
 
-function isLoggedIn(req,res, next) {
-	if(req.isAuthenticated()){
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) {
 		return next();
 	}
 	res.redirect("/login");
@@ -146,7 +149,7 @@ function isLoggedIn(req,res, next) {
 
 app.get("*", (req, res) => res.redirect("/"));
 
-app.listen(3000, "localhost", () => console.log('The server has started.'));
+app.listen(3000, "localhost", () =>  console.log('The server has started.'));
 //var campgrounds = [
 //    {name: 'Roaring Rivers' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCbUWZXpp1e0TpHykfTuBNPJW6xKbNhzF4DO14Kk5sUWkKtQQPAA"},
 //    {name: 'Scenic Byway' , image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVnLuRq6C4KcTG1qok7DRvo2dI4Gok9Cg4mkdrSjchHeNByIYCxw"},
