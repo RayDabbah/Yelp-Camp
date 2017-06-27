@@ -6,11 +6,13 @@ var express = require("express"),
 	Comment = require("./models/comments"),
 	User = require("./models/user"),
 	seed = require("./seed"),
+	methodOverride = require('method-override'),
 	app = express();
 var bodyParser = require("body-parser");
-const campgroundRoutes = require('./routes/campgrounds')
-const commentRoutes = require('./routes/comments')
-const indexRoutes = require('./routes/index')
+const campgroundRoutes = require('./routes/campgrounds');
+const commentRoutes = require('./routes/comments');
+const indexRoutes = require('./routes/index');
+app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));

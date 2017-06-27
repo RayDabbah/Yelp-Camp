@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const campground = require('../models/campgrounds');
-
+const app = express();
 router.get("/", (req, res) => {
 	campground.find({}, function (err, allCampgrounds) {
 		if (err) {
@@ -49,6 +49,23 @@ router.get("/:id", function (req, res) {
 			res.render("show", {
 				campground: clickedOnCg
 			});
+		}
+	});
+});
+router.get("/:id/edit", (req, res) => {
+	campground.findById(req.params.id, (err, selectedCampground) => {
+		res.render("edit", { campground: selectedCampground });
+
+	});
+});
+router.put("/:id", (req, res) => {
+	campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
+		console.log(updatedCampground)
+		if (err) {
+			console.log(`error is ${err}`);
+			res.redirect("/campgrounds");
+		} else {
+			res.redirect("/campgrounds/" + req.params.id);
 		}
 	});
 });

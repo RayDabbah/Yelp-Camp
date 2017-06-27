@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+
+	<h3>This is <strong>the</strong> place to edit
+		<%=campground.name%><br> and share it with the world!</h3>
+	<form action="/campgrounds/<%= campground._id%>?_method=PUT" method="POST">
+		<input type="text" name="campground[name]" value="<%=campground.name%>"><br>
+		<input type="text" name="campground[image]" value="<%=campground.image%>"><br>
+		<textarea name="campground[description]"><%=campground.description%></textarea><br>
+		<input type="submit" value="Share with the world!" placeholder="Add your Campground!">
+	</form>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<% include partials/footer %>
