@@ -8,7 +8,7 @@
 	</p> <br>
 	<p>
 		<a href="/campgrounds/<%= campground._id%>/comments/new"><button>Add your thoughts on this campground!</button></a>
-		<% 				if (loggedIn && campground.author.id.equals(loggedIn._id)) { %>
+		<% 				if (loggedIn && campground.author.id && campground.author.id.equals(loggedIn._id)) { %>
 			<a href="/campgrounds/<%= campground._id%>/edit"><button>Edit this campground</button></a>
 			<form action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
 				<a><button>DELETE</button></a>
