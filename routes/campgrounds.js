@@ -52,13 +52,13 @@ router.get("/:id", function (req, res) {
 		}
 	});
 });
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", isLoggedIn, (req, res) => {
 	campground.findById(req.params.id, (err, selectedCampground) => {
 		res.render("edit", { campground: selectedCampground });
 
 	});
 });
-router.put("/:id", (req, res) => {
+router.put("/:id", isLoggedIn, (req, res) => {
 	campground.findByIdAndUpdate(req.params.id, req.body.campground, (err, updatedCampground) => {
 		console.log(updatedCampground)
 		if (err) {
@@ -69,6 +69,16 @@ router.put("/:id", (req, res) => {
 		}
 	});
 });
+router.delete("/:id", function (req, res) {
+	campground.findByIdAndRemove(req.params.id, function (err) {
+		if (err) {
+			res.redirect("/campgrounds");
+		} else {
+			res.redirect("/campgrounds");
+		}
+	});
+});
+
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) {
