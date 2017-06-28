@@ -21,6 +21,7 @@
 		<% campground.comments.forEach(function(comment) { %>
 			<p><strong><%= comment.author.username %> - </strong>
 				<%= comment.text %>
+		<a href="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>/edit"><button>Edit your thoughts on this campground!</button></a>
 			</p>
 			<%	}); %>
 	</div>
