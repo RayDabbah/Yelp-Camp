@@ -7,6 +7,7 @@ var express = require("express"),
   User = require("./models/user"),
   seed = require("./seed"),
   methodOverride = require("method-override"),
+  flash = require("connect-flash"),
   app = express();
 var bodyParser = require("body-parser");
 const campgroundRoutes = require("./routes/campgrounds");
@@ -25,7 +26,7 @@ app.use(
     saveUninitialized: false
   })
 );
-
+app.use(flash());
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
