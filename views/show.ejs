@@ -1,31 +1,34 @@
 <% include partials/header %>
-	<h1>
-		<%= campground.name %>
-	</h1><br>
-	<img id="show" src="<%= campground.image %>"><br>
-	<p id="desc">
-		<%= campground.description %>
-	</p> <br>
-	<p>
-		<a href="/campgrounds/<%= campground._id%>/comments/new"><button>Add your thoughts on this campground!</button></a>
-		<% 				if (loggedIn && campground.author.id && campground.author.id.toString() === loggedIn._id.toString()) { %>
-			<a href="/campgrounds/<%= campground._id%>/edit"><button>Edit this campground</button></a>
-			<form action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
-				<a><button>DELETE</button></a>
-			</form>
-			<%}%>
-	</p>
-	<h4>This gorgeous campground was submitted by
-		<%= campground.author.username %>.</h4><br><br><br>
-	<div id="comment">
-		<% campground.comments.forEach(function(comment) { %>
-			<p><strong><%= comment.author.username %> - </strong>
-				<%= comment.text %>
-		<a href="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>/edit"><button>Edit your thoughts on this campground!</button></a>
-			</p>
-			<%	}); %>
-	</div>
+  <h1>
+    <%= campground.name %>
+  </h1><br>
+  <img id="show" src="<%= campground.image %>"><br>
+  <p id="desc">
+    <%= campground.description %>
+  </p> <br>
+  <p>
+    <a href="/campgrounds/<%= campground._id%>/comments/new"><button class="show-btn"> Add <strong> your</strong> thoughts on this campground!</button></a>
+    <% 				if (loggedIn && campground.author.id && campground.author.id.toString() === loggedIn._id.toString()) { %>
+      <a href="/campgrounds/<%= campground._id%>/edit"><button class="show-btn">Edit this campground</button></a>
+      <form action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
+        <a><button class="show-btn delete">DELETE</button></a>
+      </form>
+      <%}%>
+  </p>
+  <h4><em>This gorgeous campground was submitted by
+		<%= campground.author.username %>.</em></h4><br><br><br>
+  <div id="comment">
+    <% campground.comments.forEach(function(comment) { %>
+      <p><strong><%= comment.author.username %> - </strong>
+        <%= comment.text %><br><br>
+          <a href="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>/edit"><button class="show-btn">Update this comment</button></a>
+      </p>
+      <form action="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+        <a><button class="show-btn delete">DELETE</button></a>
+      </form>
+      <%	}); %>
+  </div>
 
 
 
-	<% include partials/footer %>
+  <% include partials/footer %>
