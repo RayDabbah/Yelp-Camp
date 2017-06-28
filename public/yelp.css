@@ -101,6 +101,13 @@ p, form {
   justify-content: center;
   font-size: 2.5em;
 }
+.spacer {
+  color: red;
+  padding-top: 10px;
+  text-align: center;
+  justify-content: center;
+  font-size: 1.5em;
+}
 
 section {
   display: flex;

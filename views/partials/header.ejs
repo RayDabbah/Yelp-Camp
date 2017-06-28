@@ -3,41 +3,43 @@
 <html>
 
 <head>
-	<meta charset="UTF8">
-	<link href="https://fonts.googleapis.com/css?family=Acme|Gloria+Hallelujah|Pangolin|Comfortaa|Varela+Round" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/yelp.css">
-	<title>Gorgeous Grounds</title>
+  <meta charset="UTF8">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Gloria+Hallelujah|Pangolin|Comfortaa|Varela+Round" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/yelp.css">
+  <title>Gorgeous Grounds</title>
 
 </head>
 
 <body>
-	<div class="container">
-		<div class="spacer">
-		</div>
-		<nav>
-			<a class="navanchor" href="/">
-				<li class="navleft">Home</li>
-			</a>
-			<a class="navanchor" href="/campgrounds">
-				<li>&nbsp&nbsp&nbspAll Campgrounds</li>
-			</a>
-			<a class="navanchor" href="/campgrounds/new">
-				<li>&nbsp&nbsp&nbsp New Campground</li>
-			</a>
-			<% if(!loggedIn){ %>
-				<a class="navanchor" href="/register">
-					<li class="navright">Sign Up&nbsp</li>
-				</a>
-				<a class="navanchor" href="/login">
-					<li class="navright">Log In&nbsp</li>
-				</a>
-				<% } else { %>
-					<a class="navanchor" href="#">
-						<li class="navright">Hello,
-							<%= loggedIn.username.toUpperCase() %>!!
-						</li>
-						<a class="navanchor" href="/logout">
-							<li class="navright">Log Out&nbsp</li>
-						</a>
-						<% } %>
-		</nav>
+  <div class="container">
+    <div class="spacer">
+      <%= success %>
+        <%= error  %>
+    </div>
+    <nav>
+      <a class="navanchor" href="/">
+        <li class="navleft">Home</li>
+      </a>
+      <a class="navanchor" href="/campgrounds">
+        <li>&nbsp&nbsp&nbspAll Campgrounds</li>
+      </a>
+      <a class="navanchor" href="/campgrounds/new">
+        <li>&nbsp&nbsp&nbsp New Campground</li>
+      </a>
+      <% if(!loggedIn){ %>
+        <a class="navanchor" href="/register">
+          <li class="navright">Sign Up&nbsp</li>
+        </a>
+        <a class="navanchor" href="/login">
+          <li class="navright">Log In&nbsp</li>
+        </a>
+        <% } else { %>
+          <a class="navanchor" href="#">
+            <li class="navright">Hello,
+              <%= loggedIn.username.toUpperCase() %>!!
+            </li>
+            <a class="navanchor" href="/logout">
+              <li class="navright">Log Out&nbsp</li>
+            </a>
+            <% } %>
+    </nav>

@@ -32,8 +32,9 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
   campground.create(newCampGround, function(err, latestCampground) {
     if (err) {
       res.redirect("/campgrounds/new");
-      console.log("There was en error adding your campground.");
+     req.flash('error', "There was en error adding your campground.");
     } else {
+      req.flash('success', 'You successfully added your campground! Thank You for your participation!')
       res.redirect("/campgrounds");
     }
   });
@@ -58,15 +59,17 @@ router.get("/:id/edit", middleware.verifyAuthorship, (req, res) => {
     res.render("edit", { campground: selectedCampground });
   });
 });
-router.put("/:id", middleware.isLoggedIn, (req, res) => {
+router.put("/:id", middleware.verifyAuthorship, (req, res) => {
   campground.findByIdAndUpdate(
     req.params.id,
     req.body.campground,
     (err, updatedCampground) => {
       if (err) {
         console.log(`error is ${err}`);
+        req.flash('error', 'Campground not found');
         res.redirect("/campgrounds");
       } else {
+        req.flash('success', 'You successfully updated your campground!')
         res.redirect("/campgrounds/" + req.params.id);
       }
     }

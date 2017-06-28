@@ -4,6 +4,7 @@ middlewareObj.isLoggedIn = function (req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
+  req.flash("error", "You need to be signed in to do that.")
   res.redirect("/login");
 },
   middlewareObj.verifyAuthorship = function (req, res, next) {
@@ -15,11 +16,13 @@ middlewareObj.isLoggedIn = function (req, res, next) {
           if (foundCampground.author.id.toString() == req.user._id) {
             next();
           } else {
+            req.flash("error", "You need to be the owner of that campground to do that.")
             res.redirect("back");
           }
         }
       });
     } else {
+      req.flash("error", "You need to be signed in to do that.")
       res.redirect("/login");
     }
   },
@@ -37,8 +40,9 @@ middlewareObj.isLoggedIn = function (req, res, next) {
         }
       });
     } else {
+      req.flash("error", "You need to be the writer of that comment to do that!")
       res.redirect("/login");
     }
   },
 
-module.exports = middlewareObj;
+  module.exports = middlewareObj;
