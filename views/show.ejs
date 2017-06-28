@@ -21,11 +21,13 @@
     <% campground.comments.forEach(function(comment) { %>
       <p><strong><%= comment.author.username %> - </strong>
         <%= comment.text %><br><br>
+    <% 				if (loggedIn && comment.author.id && comment.author.id.toString() === loggedIn._id.toString()) { %>
           <a href="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>/edit"><button class="show-btn">Update this comment</button></a>
       </p>
       <form action="/campgrounds/<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
         <a><button class="show-btn delete">DELETE</button></a>
       </form>
+      <%	}; %>
       <%	}); %>
   </div>
 

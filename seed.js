@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Campground = require("./models/campgrounds");
 var Comment = require("./models/comments");
+var User = require("./models/user");
 var data = [{
 	name: "Dingy Doggie Barkgrounds",
 	image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMQn6-KMmBe7NilIp1qIvUW6Qx69dyL8aQALel8V2Fo-Y9ZpQqPw",

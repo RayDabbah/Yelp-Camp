@@ -35,7 +35,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-seed();
+// seed();
 mongoose.connect("mongodb://localhost/yelpCampSeed");
 
 app.use((req, res, next) => {

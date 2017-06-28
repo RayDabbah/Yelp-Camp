@@ -124,10 +124,10 @@ button {
   border-radius: 40%;
   height: 55px;
 }
-.delete{
+.delete {
   background-color: red;
 }
-.delete:hover{
+.delete:hover {
   background-color: rgb(218, 251, 0);
   color: black;
   border: red solid 2px;
@@ -221,7 +221,7 @@ textarea {
   height: auto;
   font-family: 'Pangolin', cursive;
   background-color: white;
-  overflow-wrap: break-word;
+  padding-top: 85px;
 }
 strong {
   font-weight: bolder;

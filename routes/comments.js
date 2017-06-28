@@ -31,7 +31,7 @@ router.post("/", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/:commentId/edit", (req, res) => {
+router.get("/:commentId/edit", verifyCommentAuthor, (req, res) => {
   Comment.findById(req.params.commentId, (err, foundComment) => {
     if (err) {
       console.log(err);
@@ -45,7 +45,7 @@ router.get("/:commentId/edit", (req, res) => {
   });
 });
 
-router.put("/:commentId", isLoggedIn, (req, res) => {
+router.put("/:commentId", verifyCommentAuthor, (req, res) => {
   Comment.findByIdAndUpdate(
     req.params.commentId,
     req.body.comment,
@@ -59,7 +59,7 @@ router.put("/:commentId", isLoggedIn, (req, res) => {
   );
 });
 
-router.delete("/:commentId", (req, res) => {
+router.delete("/:commentId", verifyCommentAuthor, (req, res) => {
   Comment.findByIdAndRemove(req.params.commentId, err => {
     if (err) {
       res.redirect("back");
@@ -68,6 +68,24 @@ router.delete("/:commentId", (req, res) => {
     }
   });
 });
+
+function verifyCommentAuthor(req, res, next) {
+  if (req.isAuthenticated()) {
+    Comment.findById(req.params.commentId, (err, editComment) => {
+      if (err) {
+        res.redirect("back");
+      } else {
+        if (editComment.author.id.toString() == req.user._id) {
+          next();
+        } else {
+          res.redirect("back");
+        }
+      }
+    });
+  } else {
+    res.redirect("/login");
+  }
+}
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
