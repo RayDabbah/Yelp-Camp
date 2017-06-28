@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 campground = require("../models/campgrounds");
 Comment = require("../models/comments");
-
-router.get("/new", isLoggedIn, (req, res) => {
+const middleware = require('../middleware');
+router.get("/new", middleware.isLoggedIn, (req, res) => {
   campground.findById(req.params.id, (err, campground) => {
     if (err) {
       console.log(err);
@@ -14,7 +14,7 @@ router.get("/new", isLoggedIn, (req, res) => {
     }
   });
 });
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
   campground.findById(req.params.id, (err, campground) => {
     Comment.create(req.body.comment, (err, comment) => {
       if (err) {
@@ -31,7 +31,7 @@ router.post("/", isLoggedIn, (req, res) => {
   });
 });
 
-router.get("/:commentId/edit", verifyCommentAuthor, (req, res) => {
+router.get("/:commentId/edit", middleware.verifyCommentAuthor, (req, res) => {
   Comment.findById(req.params.commentId, (err, foundComment) => {
     if (err) {
       console.log(err);
@@ -45,7 +45,7 @@ router.get("/:commentId/edit", verifyCommentAuthor, (req, res) => {
   });
 });
 
-router.put("/:commentId", verifyCommentAuthor, (req, res) => {
+router.put("/:commentId", middleware.verifyCommentAuthor, (req, res) => {
   Comment.findByIdAndUpdate(
     req.params.commentId,
     req.body.comment,
@@ -59,7 +59,7 @@ router.put("/:commentId", verifyCommentAuthor, (req, res) => {
   );
 });
 
-router.delete("/:commentId", verifyCommentAuthor, (req, res) => {
+router.delete("/:commentId", middleware.verifyCommentAuthor, (req, res) => {
   Comment.findByIdAndRemove(req.params.commentId, err => {
     if (err) {
       res.redirect("back");
@@ -69,29 +69,5 @@ router.delete("/:commentId", verifyCommentAuthor, (req, res) => {
   });
 });
 
-function verifyCommentAuthor(req, res, next) {
-  if (req.isAuthenticated()) {
-    Comment.findById(req.params.commentId, (err, editComment) => {
-      if (err) {
-        res.redirect("back");
-      } else {
-        if (editComment.author.id.toString() == req.user._id) {
-          next();
-        } else {
-          res.redirect("back");
-        }
-      }
-    });
-  } else {
-    res.redirect("/login");
-  }
-}
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
 
 module.exports = router;

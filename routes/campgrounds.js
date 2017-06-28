@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const campground = require("../models/campgrounds");
+const middleware = require('../middleware');
 const app = express();
 router.get("/", (req, res) => {
   campground.find({}, function(err, allCampgrounds) {
@@ -13,13 +14,12 @@ router.get("/", (req, res) => {
     }
   });
 });
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
   var name = req.body.name;
   var image = req.body.image;
   var desc = req.body.description;
   var user = req.user.username;
   var userId = req.user._id;
-  console.log(req.user);
   var newCampGround = {
     name: name,
     image: image,
@@ -38,7 +38,7 @@ router.post("/", isLoggedIn, (req, res) => {
     }
   });
 });
-router.get("/new", isLoggedIn, (req, res) => res.render("newCampground"));
+router.get("/new", middleware.isLoggedIn, (req, res) => res.render("newCampground"));
 router.get("/:id", function(req, res) {
   campground
     .findById(req.params.id)
@@ -53,12 +53,12 @@ router.get("/:id", function(req, res) {
       }
     });
 });
-router.get("/:id/edit", verifyAuthorship, (req, res) => {
+router.get("/:id/edit", middleware.verifyAuthorship, (req, res) => {
   campground.findById(req.params.id, (err, selectedCampground) => {
     res.render("edit", { campground: selectedCampground });
   });
 });
-router.put("/:id", isLoggedIn, (req, res) => {
+router.put("/:id", middleware.isLoggedIn, (req, res) => {
   campground.findByIdAndUpdate(
     req.params.id,
     req.body.campground,
@@ -72,7 +72,7 @@ router.put("/:id", isLoggedIn, (req, res) => {
     }
   );
 });
-router.delete("/:id", verifyAuthorship, function(req, res) {
+router.delete("/:id", middleware.verifyAuthorship, function(req, res) {
   campground.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.redirect("/campgrounds");
@@ -81,30 +81,5 @@ router.delete("/:id", verifyAuthorship, function(req, res) {
     }
   });
 });
-
-function verifyAuthorship(req, res, next) {
-  if (req.isAuthenticated()) {
-    campground.findById(req.params.id, (err, foundCampground) => {
-      if (err) {
-        res.redirect("back");
-      } else {
-        if (foundCampground.author.id.toString() == req.user._id) {
-          next();
-        } else {
-          res.redirect("back");
-        }
-      }
-    });
-  } else {
-    res.redirect("/login");
-  }
-}
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
 
 module.exports = router;
