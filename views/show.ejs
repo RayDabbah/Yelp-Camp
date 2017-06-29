@@ -4,12 +4,12 @@
   </h1><br>
   <img id="show" src="<%= campground.image %>"><br>
   <h4><em>This gorgeous campground was submitted by
-		<%= campground.author.username %>.</em></h4><br><br><br>
+		<%= campground.author.username %>.</em></h4><br><br>
   <p id="desc">
     <%= campground.description %>
   </p> <br>
   <p>
-    <a href="/campgrounds/<%= campground._id%>/comments/new"><button class="show-btn"> Add <strong> your</strong> thoughts on this campground!</button></a><br>
+    <a href="/campgrounds/<%= campground._id%>/comments/new"><button class="show-btn"> Add <strong> your</strong> thoughts on this campground!</button></a><br><br><br>
     <% 				if (loggedIn && campground.author.id && campground.author.id.toString() === loggedIn._id.toString()) { %>
       <a href="/campgrounds/<%= campground._id%>/edit"><button class="show-btn">Edit this campground</button></a>
       <form action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
