@@ -13,8 +13,11 @@
 <body>
   <div class="container">
     <div class="spacer">
-      <%= success %>
-        <%= error  %>
+      <% if(success.length > 0){%>
+      <span id="success"><%= success %></span>
+      <%}else{%>
+        <span id="failure"><%= error  %></span>
+      <%}%>
     </div>
     <nav>
       <a class="navanchor" href="/">

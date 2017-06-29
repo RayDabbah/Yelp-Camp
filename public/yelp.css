@@ -102,7 +102,6 @@ p, form {
   font-size: 2.5em;
 }
 .spacer {
-  color: red;
   padding-top: 10px;
   text-align: center;
   justify-content: center;
@@ -229,6 +228,7 @@ textarea {
   font-family: 'Pangolin', cursive;
   background-color: white;
   padding-top: 85px;
+  word-wrap:break-word;
 }
 strong {
   font-weight: bolder;
@@ -264,6 +264,15 @@ li {
   height: 40px;
   background-color: transparent;
 }
+
+#failure{
+  color: red;
+}
+
+#success{
+  color: yellow;
+}
+
 h4 {
   text-align: center;
   text-shadow: 4px 2px #65efb5;
