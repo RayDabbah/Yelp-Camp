@@ -1,0 +1,75 @@
+div.whole{
+  position: relative;
+  padding-top: 35vh;
+  text-align: center;
+  z-index: 1;
+}
+.whole h1{
+  margin: 0px auto;
+  color: gray;
+}
+footer{
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+}
+ul.slideshow{
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+.slideshow li{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: pixAnimation 40s linear infinite;
+}
+.slideshow li:nth-child(1){
+  background-image: url(dino-reichmuth-123637.jpg);
+
+}
+.slideshow li:nth-child(2){
+  background-image: url(sam-x-84385.jpg);
+  animation-delay: 10s;
+}
+.slideshow li:nth-child(3){
+  background-image: url(teddy-kelley-194162.jpg);
+  animation-delay: 20s;
+}
+.slideshow li:nth-child(4){
+  background-image: url(van-ng-c-tang-145023.jpg);
+  animation-delay: 30s;
+}
+.slideshow li:nth-child(5){
+  background-image: url(wolfgang-lutz-26516.jpg);
+  animation-delay: 40s;
+}
+@keyframes pixAnimation{
+  0% {
+    opacity: 0;
+    animation-timing-function: ease-in;
+  }
+  10% {
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  20% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
+
