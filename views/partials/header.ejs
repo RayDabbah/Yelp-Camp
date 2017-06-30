@@ -4,6 +4,7 @@
 
 <head>
   <meta charset="UTF8">
+  <link rel="icon" href="tent.png">
   <link href="https://fonts.googleapis.com/css?family=Acme|Gloria+Hallelujah|Pangolin|Comfortaa|Varela+Round" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/yelp.css">
   <title>Gorgeous Grounds</title>
@@ -14,10 +15,10 @@
   <div class="container">
     <div class="spacer">
       <% if(success.length > 0){%>
-      <span id="success"><%= success %></span>
-      <%}else{%>
-        <span id="failure"><%= error  %></span>
-      <%}%>
+        <span id="success"><%= success %></span>
+        <%}else{%>
+          <span id="failure"><%= error  %></span>
+          <%}%>
     </div>
     <nav>
       <a class="navanchor" href="/">
