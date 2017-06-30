@@ -2,7 +2,7 @@
     <h3>Update your comment!</h3>
     <form action="/campgrounds/<%= campground %>/comments/<%=comment._id%>?_method=PUT" method="POST">
         <textarea name="comment[text]"><%= comment.text %></textarea><br>
-        <input type="submit" placeholder="Add your Comment!">
+        <input type="submit" value="Update your comment!" placeholder="Add your Comment!">
     </form>
     <br>
     <br>
