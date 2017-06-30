@@ -3,6 +3,9 @@
     <%= campground.name %>
   </h1><br>
   <img id="show" src="<%= campground.image %>"><br>
+  <h3>
+    Price:<strong> $<%= campground.price%></strong>/night.
+  </h3>
   <h4><em>This gorgeous campground was submitted by
 		<%= campground.author.username %>.</em></h4><br><br>
   <p id="desc">
@@ -13,7 +16,7 @@
     <% 				if (loggedIn && campground.author.id && campground.author.id.toString() === loggedIn._id.toString()) { %>
       <a href="/campgrounds/<%= campground._id%>/edit"><button class="show-btn">Edit this campground</button></a>
       <form action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
-        <a><button class="show-btn delete">DELETE</button></a>
+        <a><button class="shonw-btn delete">DELETE</button></a>
       </form>
       <%}%>
   </p>

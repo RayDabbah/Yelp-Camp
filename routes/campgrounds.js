@@ -19,10 +19,12 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
   var image = req.body.image;
   var desc = req.body.description;
   var user = req.user.username;
+  var price = req.body.price;
   var userId = req.user._id;
   var newCampGround = {
     name: name,
     image: image,
+    price: price,
     description: desc,
     author: {
       username: user,

@@ -5,7 +5,6 @@ var express = require("express"),
   campground = require("./models/campgrounds"),
   Comment = require("./models/comments"),
   User = require("./models/user"),
-  seed = require("./seed"),
   methodOverride = require("method-override"),
   flash = require("connect-flash"),
   app = express();
